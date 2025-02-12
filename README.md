@@ -1,4 +1,4 @@
-# OpenSearch Bulk Data Generator from Mapping
+# OpenSearch Bulk Generator
 
 A web-based tool to generate bulk data files based on OpenSearch mapping schemas. This tool helps you create test data that matches your index mapping structure, making it perfect for testing and development purposes.
 
@@ -24,8 +24,8 @@ A web-based tool to generate bulk data files based on OpenSearch mapping schemas
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/data-bulk-generator-from-mapping.git
-cd data-bulk-generator-from-mapping
+git clone https://github.com/madhankb/opensearch-bulk-generator.git
+cd opensearch-bulk-generator
 ```
 
 2. Install dependencies:
