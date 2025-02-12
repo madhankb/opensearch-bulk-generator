@@ -22,7 +22,7 @@ A web-based tool to generate bulk data files based on OpenSearch mapping schemas
 1. Clone the repository:
 ```bash
 git clone <repository-url>
-cd elasticsearch-bulk-generator
+cd opensearch-bulk-generator
 ```
 
 2. Install dependencies:
