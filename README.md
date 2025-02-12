@@ -1,92 +1,116 @@
 # OpenSearch Bulk Data Generator from Mapping
 
-A web-based tool to generate bulk data files based on OpenSearch mapping schemas. This tool helps you create test data that matches your index mapping structure.
+A web-based tool to generate bulk data files based on OpenSearch mapping schemas. This tool helps you create test data that matches your index mapping structure, making it perfect for testing and development purposes.
 
 ## Features
 
-- Generate data based on OpenSearch mapping schemas
+- Generate synthetic data based on OpenSearch mapping schemas
 - Support for various field types:
-  - text/keyword
-  - integer/long
-  - float/double
-  - date
-  - boolean
-  - object
-  - nested
+  - text/keyword (generates random words)
+  - integer/long (generates random numbers)
+  - float/double (generates random decimal numbers)
+  - date (generates random dates)
+  - boolean (generates true/false values)
+  - object (generates nested JSON objects)
+  - nested (generates arrays of nested objects)
+- Interactive web interface
 - Preview generated data before downloading
 - Download data in OpenSearch bulk API format
 - Configurable number of records
+- Real-time data preview
+- Downloadable bulk files with timestamp
 
 ## Installation
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
-cd elasticsearch-bulk-generator
+git clone https://github.com/yourusername/data-bulk-generator-from-mapping.git
+cd data-bulk-generator-from-mapping
 ```
 
 2. Install dependencies:
 ```bash
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 3. Run the application:
 ```bash
-python app.py
+python3 app.py
 ```
 
-4. Open http://localhost:5008 in your browser
+4. Open http://localhost:5000 in your browser
 
 ## Usage
 
-1. Enter your index name
-2. Specify the number of records you want to generate
-3. Paste your OpenSearch mapping JSON
-4. Click "Preview Data" to see sample generated data
-5. Click "Generate & Download Bulk File" to download the complete dataset
+1. Access the web interface at http://localhost:5000
+2. Enter your index name in the "Index Name" field
+3. Specify the number of records you want to generate (default is 10)
+4. Paste your OpenSearch mapping JSON in the mapping field
+5. Choose your action:
+   - Click "Preview" to see sample generated data
+   - Click "Generate & Download" to download the complete dataset in bulk format
 
 ### Example Mapping
 
 ```json
 {
   "properties": {
-    "title": { "type": "text" },
-    "description": { "type": "text" },
-    "price": { "type": "double" },
-    "created_at": { "type": "date" },
-    "in_stock": { "type": "boolean" },
-    "category": { "type": "keyword" },
-    "tags": {
-      "type": "nested",
+    "name": {
+      "type": "text"
+    },
+    "age": {
+      "type": "integer"
+    },
+    "email": {
+      "type": "keyword"
+    },
+    "is_active": {
+      "type": "boolean"
+    },
+    "registration_date": {
+      "type": "date"
+    },
+    "profile": {
+      "type": "object",
       "properties": {
-        "name": { "type": "keyword" },
-        "score": { "type": "float" }
+        "address": {
+          "type": "text"
+        },
+        "phone": {
+          "type": "keyword"
+        }
       }
     }
   }
 }
 ```
 
-### Using the Generated File
+### Output Format
 
-The tool generates a file in the OpenSearch bulk API format. You can use this file with the OpenSearch bulk API:
+The tool generates data in OpenSearch bulk format:
 
-```bash
-curl -X POST "localhost:9200/_bulk" -H "Content-Type: application/x-ndjson" --data-binary "@bulk_data_file.json"
+```json
+{"index": {"_index": "your_index_name"}}
+{"name": "example", "age": 25, "email": "test@example.com", "is_active": true, "registration_date": "2024-02-11", "profile": {"address": "123 Main St", "phone": "555-0123"}}
 ```
 
-For OpenSearch:
-```bash
-curl -X POST "https://your-opensearch-endpoint/_bulk" -H "Content-Type: application/x-ndjson" --data-binary "@bulk_data_file.json" -u "username:password"
-```
+## File Structure
 
-## Supported Field Types
+- `app.py`: Main Flask application with data generation logic
+- `templates/index.html`: Web interface template
+- `requirements.txt`: Python dependencies
+- `README.md`: Documentation
 
-- `text`: Generates random words
-- `keyword`: Generates random words
-- `long`/`integer`: Generates random numbers
-- `double`/`float`: Generates random decimal numbers
-- `date`: Generates random dates
-- `boolean`: Generates random true/false values
-- `object`: Generates nested objects based on the specified properties
-- `nested`: Generates an array of nested objects based on the specified properties
+## Dependencies
+
+- Flask: Web framework
+- Faker: Synthetic data generation
+- python-dotenv: Environment variable management
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is open source and available under the MIT License.
