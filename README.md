@@ -5,14 +5,6 @@ A web-based tool to generate bulk data files based on OpenSearch mapping schemas
 ## Features
 
 - Generate synthetic data based on OpenSearch mapping schemas
-- Support for various field types:
-  - text/keyword (generates random words)
-  - integer/long (generates random numbers)
-  - float/double (generates random decimal numbers)
-  - date (generates random dates)
-  - boolean (generates true/false values)
-  - object (generates nested JSON objects)
-  - nested (generates arrays of nested objects)
 - Interactive web interface
 - Preview generated data before downloading
 - Download data in OpenSearch bulk API format
